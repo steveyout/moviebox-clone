@@ -1,6 +1,7 @@
 import React from 'react';
 import ThemeRegistry from '../theme/ThemeRegistry';
 import AppLayoutClient from '../components/AppLayoutClient';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
     metadataBase: new URL('https://moviebox.watch'),
@@ -65,6 +66,9 @@ export default function RootLayout({ children }) {
             </AppLayoutClient>
         </ThemeRegistry>
         </body>
+
+        {/* Google Analytics Global Tag Placement */}
+        <GoogleAnalytics gaId="G-LP4N16J7NZ" />
         </html>
     );
 }
