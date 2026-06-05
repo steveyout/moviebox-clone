@@ -52,8 +52,11 @@ export default function AppLayoutClient({ children }) {
                         display: 'flex',
                         flexDirection: 'column',
                         gap: { xs: 1.5, md: 0 },
-                        py: { xs: 1.5, md: 0 },
-                        px: 2
+                        // Added balanced padding across screen sizes to prevent hugging the top
+                        py: { xs: 1.5, md: 1.2 },
+                        px: 2,
+                        // Established uniform desktop height boundary
+                        minHeight: { md: '72px' }
                     }}
                 >
                     <Box sx={{ display: 'flex', width: '100%', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -79,7 +82,7 @@ export default function AppLayoutClient({ children }) {
                                 backgroundColor: 'rgba(255, 255, 255, 0.08)',
                                 borderRadius: '30px',
                                 px: 2.5,
-                                py: 0.6,
+                                py: 0.8, // Slightly expanded vertical inner spacing
                                 width: '45%',
                                 border: '1px solid rgba(255,255,255,0.05)'
                             }}
@@ -104,6 +107,7 @@ export default function AppLayoutClient({ children }) {
                                     textTransform: 'none',
                                     borderRadius: '30px',
                                     px: 3,
+                                    py: 1, // Added explicit button height alignment
                                     '&:hover': { backgroundColor: '#00c853' }
                                 }}
                             >
@@ -120,7 +124,8 @@ export default function AppLayoutClient({ children }) {
                                     fontWeight: 'medium',
                                     borderRadius: '30px',
                                     border: '1px solid rgba(255,255,255,0.1)',
-                                    px: 2
+                                    px: 2,
+                                    py: 0.8 // Added explicit alignment matching action sets
                                 }}
                             >
                                 ENGLISH
@@ -159,7 +164,7 @@ export default function AppLayoutClient({ children }) {
                     backgroundColor: '#111827',
                     borderRight: '1px solid rgba(255, 255, 255, 0.05)',
                     position: 'fixed',
-                    top: 64,
+                    top: 72, // Shifted down to cleanly touch under our updated 72px bar height
                     bottom: 0,
                     left: 0,
                     flexDirection: 'column',
@@ -185,7 +190,8 @@ export default function AppLayoutClient({ children }) {
                 sx={{
                     flexGrow: 1,
                     marginLeft: { xs: '0px', md: '70px' },
-                    marginTop: { xs: '120px', md: '64px' },
+                    // Adjusted margin tops perfectly to balance out header heights across viewports
+                    marginTop: { xs: '130px', md: '72px' },
                     width: { xs: '100%', md: 'calc(100% - 70px)' },
                     pb: { xs: 8, md: 0 },
                     overflowX: 'hidden'
