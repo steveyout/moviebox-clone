@@ -2,32 +2,31 @@
 
 import React from 'react';
 import { Container, Typography, Grid, Box, Button } from '@mui/material';
+import Link from 'next/link';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import MovieCard from './MovieCard';
 
 export default function MovieGridDisplay({
-                                             trendingMovies = [],
-                                             trendingTvShows = [],
-                                             popularMovies = [],
-                                             popularTvShows = [] // Destructured smoothly
-                                         }) {
-
-    // Simply added the fourth row array config object here
+    trendingMovies = [],
+    trendingTvShows = [],
+    popularMovies = [],
+    popularTvShows = []
+}) {
     const contentSections = [
-        { title: 'Trending Movies', data: trendingMovies },
-        { title: 'Trending TV Shows', data: trendingTvShows },
-        { title: 'Popular Movies', data: popularMovies },
-        { title: 'Popular TV Shows', data: popularTvShows }
+        { title: 'Trending Movies', data: trendingMovies, href: '/trending' },
+        { title: 'Trending TV Shows', data: trendingTvShows, href: '/trending' },
+        { title: 'Popular Movies', data: popularMovies, href: '/movies' },
+        { title: 'Popular TV Shows', data: popularTvShows, href: '/tv' }
     ];
 
     return (
-        <Box sx={{ pb: 6, mt: 4 }}>
+        <Box sx={{ pb: 8, mt: 4 }}>
             <Container maxWidth="xl" sx={{ px: { xs: 2.5, md: 6 }, display: 'flex', flexDirection: 'column', gap: 6 }}>
 
                 {contentSections.map((section, idx) => {
                     const displayData = section.data.slice(0, 12).map(item => ({
                         ...item,
-                        title: item.title || item.name // Formats title mapping fallback accurately for series listings
+                        title: item.title || item.name
                     }));
 
                     return (
@@ -51,6 +50,8 @@ export default function MovieGridDisplay({
                                 </Typography>
 
                                 <Button
+                                    component={Link}
+                                    href={section.href}
                                     endIcon={<ChevronRightIcon />}
                                     sx={{
                                         color: '#9ca3af',
